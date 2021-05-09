@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Average from 'components/atoms/Average/Average';
 import Button from 'components/atoms/Button/Button';
+import Label from 'components/atoms/Label/Label';
 
 const Wrapper = styled.li`
   display: flex;
@@ -21,10 +22,7 @@ const Wrapper = styled.li`
 const UsersListItem = ({ userData: { average, name, attendance } }) => (
   <Wrapper>
     <Average average={average} />
-    <div>
-      <p>{name}</p>
-      <p>attendance: {attendance}%</p>
-    </div>
+    <Label name={name} attendance={attendance} />
     <Button />
   </Wrapper>
 );
