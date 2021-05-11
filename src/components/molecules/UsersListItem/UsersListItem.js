@@ -5,11 +5,13 @@ import Button from 'components/atoms/Button/Button';
 import Label from 'components/atoms/Label/Label';
 import { Wrapper } from './UsersListItem.styles';
 
-const UsersListItem = ({ userData: { average, name, attendance } }) => (
+const showIndex = (index) => alert(`This is student index: ${index + 1}`)
+
+const UsersListItem = ({ index, userData: { average, name, attendance } }) => (
   <Wrapper>
     <Average average={average} />
     <Label name={name} attendance={attendance} />
-    <Button />
+    <Button onClick={() => showIndex(index)} />
   </Wrapper>
 );
 
