@@ -5,16 +5,20 @@ import { Wrapper, StyledList } from './UsersList.styles.js';
 
 class UsersList extends React.Component {
   state = {
-    isUsersList: false,
+    users,
+  };
+
+  deleteUsers = (name) => {
+    const filteredName = this.state.users.filter((users) => users.name !== name);
+    this.setState({ users: filteredName });
   };
 
   render() {
     return (
       <Wrapper>
-        <h1>{this.state.isUsersList ? 'Users List' : 'Students List'}</h1>
         <StyledList>
-          {users.map((userData, i) => (
-            <UsersListItem index={i} userData={userData} />
+          {this.state.users.map((userData, i) => (
+            <UsersListItem deleteUser={this.deleteUsers} index={i} userData={userData} />
           ))}
         </StyledList>
       </Wrapper>
