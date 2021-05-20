@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { users as userData } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList } from './UsersList.styles.js';
+import FormField from '../../molecules/FormField/FormField';
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
@@ -35,14 +36,19 @@ const UsersList = () => {
   };
 
   return (
-    <Wrapper>
-      <h1>{isLoading ? 'Loading...' : 'Users list'}</h1>
-      <StyledList>
-        {users.map((userData, i) => (
-          <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
-        ))}
-      </StyledList>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <FormField label="Name" id="name" name="name" />
+      </Wrapper>
+      <Wrapper>
+        <h1>{isLoading ? 'Loading...' : 'Users list'}</h1>
+        <StyledList>
+          {users.map((userData, i) => (
+            <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
+          ))}
+        </StyledList>
+      </Wrapper>
+    </>
   );
 };
 
