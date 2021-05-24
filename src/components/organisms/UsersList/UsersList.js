@@ -3,6 +3,7 @@ import { users as userData } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList } from './UsersList.styles.js';
 import FormField from '../../molecules/FormField/FormField';
+import { Button } from '../../atoms/Button/Button';
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
@@ -38,7 +39,11 @@ const UsersList = () => {
   return (
     <>
       <Wrapper>
+        <h1>Add new user</h1>
         <FormField label="Name" id="name" name="name" />
+        <FormField label="Attendance" id="attendance" name="attendance" />
+        <FormField label="Average" id="average" name="average" />
+        <Button>Add</Button>
       </Wrapper>
       <Wrapper>
         <h1>{isLoading ? 'Loading...' : 'Users list'}</h1>

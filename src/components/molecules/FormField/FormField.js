@@ -7,6 +7,10 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${Label} {
+    margin: 10px 0;
+  }
 `;
 
 const FormField = ({ label, name, id, type = 'text', ...props }) => {
