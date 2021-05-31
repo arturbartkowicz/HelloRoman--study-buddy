@@ -1,61 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { users as userData } from 'data/users';
+import React from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList } from './UsersList.styles.js';
-import FormField from '../../molecules/FormField/FormField';
-import { Button } from '../../atoms/Button/Button';
-
-const mockAPI = (success) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (userData) {
-        resolve([...userData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
-};
 
 // Komponent Funkcyjny
 
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    mockAPI().then((data) => {
-      setUsers(data);
-      setIsLoading(false);
-    });
-  }, []);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
+const UsersList = ({ users, deleteUser }) => {
   return (
-    <>
-      <Wrapper>
-        <h1>Add new user</h1>
-        <FormField label="Name" id="name" name="name" />
-        <FormField label="Attendance" id="attendance" name="attendance" />
-        <FormField label="Average" id="average" name="average" />
-        <Button>Add</Button>
-      </Wrapper>
-      <Wrapper>
-        <h1>{isLoading ? 'Loading...' : 'Users list'}</h1>
-        <StyledList>
-          {users.map((userData, i) => (
-            <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
-          ))}
-        </StyledList>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <StyledList>
+        {users.map((userData, i) => (
+          <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
+        ))}
+      </StyledList>
+    </Wrapper>
   );
 };
+
+export default UsersList;
 
 // Komponent klasowy
 // class UsersList extends React.Component {
@@ -90,5 +51,3 @@ const UsersList = () => {
 //     );
 //   }
 // }
-
-export default UsersList;

@@ -1,25 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UsersList from 'components/organisms/UsersList/UsersList';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
+import { users as userData } from 'data/users';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
+import { Wrapper } from './Root.styles';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Form from 'components/organisms/Form/Form';
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightGrey};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
+const initialFormState = {
+  name: '',
+  attendance: '',
+  average: '',
+};
 
-const Root = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Wrapper>
-      <UsersList />
-    </Wrapper>
-  </ThemeProvider>
-);
+const Root = () => {
+  const [users, setUsers] = useState(userData);
+  const [formValues, setFormValues] = useState(initialFormState);
+
+  const deleteUser = (name) => {
+    const filteredUsers = users.filter((user) => user.name !== name);
+    setUsers(filteredUsers);
+  };
+
+  const handleInputChange = (e) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name: formValues.name,
+      attendance: formValues.attendance,
+      average: formValues.average,
+    };
+
+    setUsers([newUser, ...users]);
+
+    setFormValues(initialFormState);
+  };
+
+  return (
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Wrapper>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/add-user">Add user</Link>
+          </nav>
+          <Switch>
+            <Route path="/add-user">
+              <Form handleAddUser={handleAddUser} formValues={formValues} handleInputChange={handleInputChange} />
+            </Route>
+            <Route path="/">
+              <UsersList users={users} deleteUser={deleteUser} />
+            </Route>
+          </Switch>
+        </Wrapper>
+      </ThemeProvider>
+    </Router>
+  );
+};
 
 export default Root;
