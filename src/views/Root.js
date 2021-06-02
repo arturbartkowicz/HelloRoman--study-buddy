@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { users as userData } from 'data/users';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
-import { Wrapper } from './Root.styles';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Wrapper, FormWrapper } from './Root.styles';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Form from 'components/organisms/Form/Form';
 import Nav from '../components/organisms/Nav/Nav';
 
@@ -48,16 +48,18 @@ const Root = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Nav />
         <Wrapper>
-          <Switch>
-            <Route path="/add-user">
-              <Form handleAddUser={handleAddUser} formValues={formValues} handleInputChange={handleInputChange} />
-            </Route>
-            <Route path="/">
-              <UsersList users={users} deleteUser={deleteUser} />
-            </Route>
-          </Switch>
+          <Nav />
+          <FormWrapper>
+            <Switch>
+              <Route path="/add-user">
+                <Form handleAddUser={handleAddUser} formValues={formValues} handleInputChange={handleInputChange} />
+              </Route>
+              <Route path="/">
+                <UsersList users={users} deleteUser={deleteUser} />
+              </Route>
+            </Switch>
+          </FormWrapper>
         </Wrapper>
       </ThemeProvider>
     </Router>

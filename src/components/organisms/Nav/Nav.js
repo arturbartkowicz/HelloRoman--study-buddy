@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Wrapper } from './Nav.styles.js';
+import { Wrapper, Header, LinkWrapper } from './Nav.styles.js';
 
 const Nav = () => {
   return (
     <Wrapper>
-      <Link to="/">Home</Link>
-      <Link to="/add-user">Add user</Link>
+      <Header>Study Buddy</Header>
+      <Link to="/">
+        <LinkWrapper>Dashboard</LinkWrapper>
+      </Link>
+      <Link to="/add-user">
+        <LinkWrapper>Add user</LinkWrapper>
+      </Link>
     </Wrapper>
   );
 };
