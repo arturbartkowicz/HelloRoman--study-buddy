@@ -5,7 +5,7 @@ import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import Label from 'components/atoms/Label/Label';
 import { Wrapper } from './UsersListItem.styles';
 
-const UsersListItem = ({ deleteUser, userData: { average, name, attendance } }) => (
+const UsersListItem = ({ deleteUser, userData: { average, name, attendance = '0%' } }) => (
   <Wrapper>
     <Average average={average} />
     <Label name={name} attendance={attendance} />
@@ -15,7 +15,7 @@ const UsersListItem = ({ deleteUser, userData: { average, name, attendance } }) 
 
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
-    average: PropTypes.string,
+    average: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     attendance: PropTypes.string,
   }),

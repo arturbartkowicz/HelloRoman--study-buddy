@@ -12,6 +12,12 @@ const Nav = () => {
       <Link to="/add-user">
         <LinkWrapper>Add user</LinkWrapper>
       </Link>
+      <Link>
+        <LinkWrapper>Settings</LinkWrapper>
+      </Link>
+      <Link>
+        <LinkWrapper>Logout</LinkWrapper>
+      </Link>
     </Wrapper>
   );
 };
