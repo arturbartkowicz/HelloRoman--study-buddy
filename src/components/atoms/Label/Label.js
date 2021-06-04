@@ -1,11 +1,8 @@
-import React from 'react';
-import { StyledWrapper, StyledName, StyledAttendance } from './Label.styles';
+import styled from 'styled-components';
 
-const Label = ({ name, attendance }) => (
-  <StyledWrapper>
-    <StyledName>{name}</StyledName>
-    <StyledAttendance>attendance: {attendance}%</StyledAttendance>
-  </StyledWrapper>
-);
-
-export default Label;
+export const Label = styled.label`
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.darkGrey};
+`;

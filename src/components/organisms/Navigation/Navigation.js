@@ -1,14 +1,20 @@
 import React from 'react';
-import { Wrapper, Logo, StyledLink } from './Navigation.styles.js';
+import { Logo, StyledLink, Wrapper } from 'components/organisms/Navigation/Navigation.styles';
 
 const Navigation = () => {
   return (
     <Wrapper>
-      <Logo>Study Buddy</Logo>
+      <Logo>
+        <h1>
+          Study
+          <br />
+          Buddy
+        </h1>
+      </Logo>
       <StyledLink to="/">Dashboard</StyledLink>
       <StyledLink to="/add-user">Add user</StyledLink>
-      <StyledLink>Settings</StyledLink>
-      <StyledLink>Logout</StyledLink>
+      <StyledLink to="/">Settings</StyledLink>
+      <StyledLink to="/">Logout</StyledLink>
     </Wrapper>
   );
 };
