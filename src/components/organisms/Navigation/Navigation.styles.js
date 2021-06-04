@@ -35,6 +35,8 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName: 'activeLink' 
   margin: 15px 20px 15px auto;
 
   &.activeLink {
-    color: red;
+    &:after {
+      content: '🦄';
+    }
   }
 `;
