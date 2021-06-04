@@ -27,14 +27,15 @@ export const Logo = styled.div`
   }
 `;
 
-export const StyledLink = styled(NavLink).attrs({ activeClassName: 'activeLink' })`
+const activeClassName = 'activeLink';
+export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   font-weight: bold;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.darkGrey};
   text-align: right;
   margin: 15px 20px 15px auto;
 
-  &.activeLink {
+  &.${activeClassName} {
     &:after {
       content: '🦄';
     }
