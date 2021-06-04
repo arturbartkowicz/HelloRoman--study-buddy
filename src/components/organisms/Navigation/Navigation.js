@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Wrapper, Logo, StyledLink } from './Nav.styles.js';
+import { Wrapper, Logo, StyledLink } from './Navigation.styles.js';
 
-const Nav = () => {
+const Navigation = () => {
   return (
     <Wrapper>
       <Logo>Study Buddy</Logo>
@@ -14,4 +13,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navigation;
