@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { screen, fireEvent } from '@testing-library/react';
+import FormField from './FormField';
+import renderWithThemeProvider from 'helpers/renderWithTeamProvider';
 
-const InputWithButton = () => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (e) => setInputValue(e.target.value);
-
-  return (
-    <>
-      <input value={inputValue} onChange={handleInputChange} name="Name" id="name" placeholder="Enter your name" />
-      <button disabled={!inputValue}>Submit</button>
-    </>
-  );
-};
-
-describe('Input with button', () => {
+describe('Form Field', () => {
   it('Renders the component', () => {
-    render(<InputWithButton />);
-    screen.getByText('Submit');
+    renderWithThemeProvider(<FormField label="name" name="name" id="name" />);
   });
 });
