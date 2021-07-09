@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useRef, useEffect } from 'react';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
@@ -48,6 +48,13 @@ const AddUser = () => {
   const [formValues, dispatch] = useReducer(reducer, initialFormState);
   const { handleAddUser } = useContext(UsersContext);
   // const context = useContext(UsersContext);  wyzej destrukturyzacja
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     dispatch({
@@ -70,7 +77,7 @@ const AddUser = () => {
   return (
     <ViewWrapper as="form" onSubmit={handleSubmitUser}>
       <Title>Add Title</Title>
-      <FormField label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
+      <FormField ref={ref} label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
       <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
       <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
       <FormField
