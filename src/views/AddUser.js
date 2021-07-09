@@ -13,21 +13,28 @@ const initialFormState = {
   error: '',
 };
 
+const actionTypes = {
+  inputChange: 'INPUT CHANGE',
+  clearValues: 'CLEAR VALUES',
+  consentToggle: 'CONSENT TOGGLE',
+  throwError: 'THROW ERROR',
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'INPUT CHANGE':
+    case actionTypes.inputChange:
       return {
         ...state,
         [action.field]: action.value,
       };
-    case 'CLEAR VALUES':
+    case actionTypes.clearValues:
       return initialFormState;
-    case 'CONSENT TOGGLE':
+    case actionTypes.consentToggle:
       return {
         ...state,
         consent: !state.consent,
       };
-    case 'THROW ERROR':
+    case actionTypes.throwError:
       return {
         ...state,
         error: action.errorValue,
@@ -44,7 +51,7 @@ const AddUser = () => {
 
   const handleInputChange = (e) => {
     dispatch({
-      type: 'INPUT CHANGE',
+      type: actionTypes.inputChange,
       field: e.target.name,
       value: e.target.value,
     });
@@ -54,15 +61,14 @@ const AddUser = () => {
     e.preventDefault();
     if (formValues.consent) {
       handleAddUser(formValues);
-      dispatch({ type: 'CLEAR VALUES' });
+      dispatch({ type: actionTypes.clearValues });
     } else {
-      dispatch({ type: 'THROW ERROR', errorValue: 'You need to thick check box' });
+      dispatch({ type: actionTypes.throwError, errorValue: 'You need to thick check box' });
     }
   };
 
   return (
     <ViewWrapper as="form" onSubmit={handleSubmitUser}>
-      {console.log(formValues)}
       <Title>Add Title</Title>
       <FormField label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
       <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
@@ -73,7 +79,7 @@ const AddUser = () => {
         name="consent"
         type="checkbox"
         value={formValues.consent}
-        onChange={() => dispatch({ type: 'CONSENT TOGGLE' })}
+        onChange={() => dispatch({ type: actionTypes.consentToggle })}
       />
       <Button type="submit">Add</Button>
       {formValues.error ? <p>{formValues.error}</p> : null}
