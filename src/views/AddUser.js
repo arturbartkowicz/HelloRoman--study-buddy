@@ -4,6 +4,7 @@ import { Button } from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { Title } from 'components/atoms/Title/Title';
 import { UsersContext } from 'providers/UsersProvider';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const initialFormState = {
   name: '',
@@ -49,6 +50,7 @@ const AddUser = () => {
   const { handleAddUser } = useContext(UsersContext);
   // const context = useContext(UsersContext);  wyzej destrukturyzacja
   const ref = useRef(null);
+  const dimensions = useWindowSize();
 
   useEffect(() => {
     if (ref.current) {
@@ -77,6 +79,8 @@ const AddUser = () => {
   return (
     <ViewWrapper as="form" onSubmit={handleSubmitUser}>
       <Title>Add Title</Title>
+      <Title>Screen width: {dimensions.width} px</Title>
+      <Title>Screen heigth: {dimensions.heigth} px</Title>
       <FormField ref={ref} label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
       <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
       <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
