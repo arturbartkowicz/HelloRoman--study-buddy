@@ -1,12 +1,12 @@
 import React from 'react';
-import { Wrapper } from './NewsSection.styles';
+import { Wrapper, NewsSectionHeader } from './NewsSection.styles';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { Button } from 'components/atoms/Button/Button';
 
 const NewsSection = () => {
   return (
     <Wrapper>
-      <h2>University news feed</h2>
+      <NewsSectionHeader>University news feed</NewsSectionHeader>
       <ViewWrapper>
         <h3>Lorem ipsum</h3>
         <p>sdfkn fsnf sfn</p>
