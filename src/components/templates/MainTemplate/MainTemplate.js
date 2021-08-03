@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navigation from 'components/organisms/Navigation/Navigation';
 import { Wrapper } from 'components/templates/MainTemplate/MainTemplate.styles';
+import { Input } from 'components/atoms/Input/Input';
 
 const MainTemplate = ({ children }) => {
   const SearchBarWrapper = styled.div`
@@ -9,15 +10,26 @@ const MainTemplate = ({ children }) => {
     grid-column: 2 / 3;
     border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
     height: 90px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 40px;
+
+    ${Input} {
+      font-size: ${({ theme }) => theme.fontSize.xl};
+      width: 100%;
+      max-width: 350px;
+    }
   `;
 
   const StatusInfo = styled.div`
     color: ${({ theme }) => theme.colors.darkGrey};
     font-size: ${({ theme }) => theme.fontSize.l};
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 40px;
+
+    p {
+      margin: 5px;
+      margin-right: 40px;
+    }
   `;
 
   const SearchBar = () => (
@@ -28,7 +40,7 @@ const MainTemplate = ({ children }) => {
           <strong>Teacher</strong>
         </p>
       </StatusInfo>
-      <input type="text" />
+      <Input type="text" />
     </SearchBarWrapper>
   );
 
