@@ -1,3 +1,4 @@
+import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -7,10 +8,35 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
+  padding: 50px;
 `;
 
 export const NewsSectionHeader = styled.h2`
-  margin-left: 25px;
   margin-right: auto;
   color: ${({ theme }) => theme.colors.darkGrey};
+`;
+
+export const ArticleWrapper = styled(ViewWrapper)`
+  margin: 30px 0;
+  width: 100%;
+  max-width: unset;
+  border-radius: 12px;
+  color: ${({ theme }) => theme.colors.darkGrey};
+
+  p {
+    line-height: 1.6;
+  }
+`;
+
+export const TitleWrapper = styled.div`
+  h3 {
+    margin: 0;
+    font-size: ${({ theme }) => theme.fontSize.xl};
+  }
+
+  p {
+    margin: 0;
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
 `;
