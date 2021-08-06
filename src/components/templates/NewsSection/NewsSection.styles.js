@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 50px;
+  overflow-y: scroll;
 `;
 
 export const NewsSectionHeader = styled.h2`
