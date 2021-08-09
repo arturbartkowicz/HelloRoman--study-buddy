@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitleWrapper, ArticleWrapper, Wrapper, NewsSectionHeader } from './NewsSection.styles';
+import { TitleWrapper, ArticleWrapper, Wrapper, NewsSectionHeader, ContentWrapper } from './NewsSection.styles';
 import { Button } from 'components/atoms/Button/Button';
 
 const NewsSection = () => {
@@ -36,8 +36,10 @@ const NewsSection = () => {
             <h3>{item.title}</h3>
             <p>{item.category}</p>
           </TitleWrapper>
-          <p>{item.content}</p>
-          {item.image ? <img src={item.image} alt={'sjkfn'} style={{ width: 'auto', height: 'auto' }} /> : null}
+          <ContentWrapper>
+            <p>{item.content}</p>
+            {item.image ? <img src={item.image} alt={'sjkfn'} style={{ width: 'auto', height: 'auto' }} /> : null}
+          </ContentWrapper>
           <Button isBig>Click me</Button>
         </ArticleWrapper>
       ))}
