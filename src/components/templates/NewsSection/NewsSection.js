@@ -3,11 +3,12 @@ import { TitleWrapper, ArticleWrapper, Wrapper, NewsSectionHeader, ContentWrappe
 import { Button } from 'components/atoms/Button/Button';
 import axios from 'axios';
 
-const API_TOKEN = 'd6ffb544dff9cdf6a7f244bdc151f7';
 const GRAPHQL_ENDPOINT = 'https://graphql.datocms.com/';
 
 const NewsSection = () => {
   const [articles, setArticles] = useState([]);
+  const [error, setError] = useState('');
+
   useEffect(() => {
     axios
       .post(
@@ -28,18 +29,18 @@ const NewsSection = () => {
         },
         {
           headers: {
-            authorization: `Bearer ${API_TOKEN}`,
+            authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
           },
         }
       )
       .then(({ data: { data } }) => setArticles(data.allArticles))
-      .catch((err) => console.log(err));
+      .catch((err) => setError("Couldn't display data"));
   }, []);
 
   return (
     <Wrapper>
       <NewsSectionHeader>University news feed</NewsSectionHeader>
-      {articles.length > 0 ? (
+      {articles.length > 0 && !error ? (
         articles.map(({ title, category, content, image = null }) => (
           <ArticleWrapper key={title}>
             <TitleWrapper>
@@ -54,7 +55,7 @@ const NewsSection = () => {
           </ArticleWrapper>
         ))
       ) : (
-        <NewsSectionHeader>Loading...</NewsSectionHeader>
+        <NewsSectionHeader>{error ? error : 'Loading...'}</NewsSectionHeader>
       )}
     </Wrapper>
   );
