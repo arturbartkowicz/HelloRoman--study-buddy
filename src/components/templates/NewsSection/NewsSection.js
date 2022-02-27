@@ -1,48 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TitleWrapper, ArticleWrapper, Wrapper, NewsSectionHeader, ContentWrapper } from './NewsSection.styles';
 import { Button } from 'components/atoms/Button/Button';
+import axios from 'axios';
+
+const API_TOKEN = 'd6ffb544dff9cdf6a7f244bdc151f7';
+const GRAPHQL_ENDPOINT = 'https://graphql.datocms.com/';
 
 const NewsSection = () => {
-  const data = [
-    {
-      title: 'New car',
-      category: 'Cars',
-      content:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste provident vitae, minima maxime at ab consequatur, ea impedit eius esse porro numquam voluptate voluptatibus debitis magnam aperiam! Ex, dolores?',
-      image: null,
-    },
-    {
-      title: 'New computer at school',
-      category: 'Tech news',
-      content:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste provident vitae, minima maxime at ab consequatur, ea impedit eius esse porro numquam voluptate voluptatibus debitis magnam aperiam! Ex, dolores?',
-      image: 'https://unsplash.it/500/400',
-    },
-    {
-      title: 'New computer at school',
-      category: 'Tech news',
-      content:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste provident vitae, minima maxime at ab consequatur, ea impedit eius esse porro numquam voluptate voluptatibus debitis magnam aperiam! Ex, dolores?',
-      image: null,
-    },
-  ];
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    axios
+      .post(
+        GRAPHQL_ENDPOINT,
+        {
+          query: `
+            { allArticles {
+                id
+                title
+                content
+                image {
+                  id
+                  url
+                }
+              }
+            } 
+          `,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${API_TOKEN}`,
+          },
+        }
+      )
+      .then(({ data: { data } }) => setArticles(data.allArticles))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Wrapper>
       <NewsSectionHeader>University news feed</NewsSectionHeader>
-      {data.map((item) => (
-        <ArticleWrapper key={item.title}>
-          <TitleWrapper>
-            <h3>{item.title}</h3>
-            <p>{item.category}</p>
-          </TitleWrapper>
-          <ContentWrapper>
-            <p>{item.content}</p>
-            {item.image ? <img src={item.image} alt={'sjkfn'} style={{ width: 'auto', height: 'auto' }} /> : null}
-          </ContentWrapper>
-          <Button isBig>Click me</Button>
-        </ArticleWrapper>
-      ))}
+      {articles.length > 0 ? (
+        articles.map(({ title, category, content, image = null }) => (
+          <ArticleWrapper key={title}>
+            <TitleWrapper>
+              <h3>{title}</h3>
+              <p>{category}</p>
+            </TitleWrapper>
+            <ContentWrapper>
+              <p>{content}</p>
+              {image ? <img src={image.url} alt={'sjkfn'} style={{ width: 'auto', height: 'auto' }} /> : null}
+            </ContentWrapper>
+            <Button isBig>Click me</Button>
+          </ArticleWrapper>
+        ))
+      ) : (
+        <NewsSectionHeader>Loading...</NewsSectionHeader>
+      )}
     </Wrapper>
   );
 };
