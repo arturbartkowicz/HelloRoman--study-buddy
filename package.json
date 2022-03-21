@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.26.0",
@@ -43,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
