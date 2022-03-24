@@ -1,9 +1,9 @@
 import React from 'react';
 import FormField from './AddUser';
-import { renderWithThemeProvider } from 'helpers/renderWithTeamProvider';
+import { renderWithProviders } from 'helpers/renderWithProviders';
 
 describe('Input with value', () => {
   it('Renders the component', () => {
-    renderWithThemeProvider(<FormField label="name" name="name" id="name" />);
+    renderWithProviders(<FormField label="name" name="name" id="name" />);
   });
 });
