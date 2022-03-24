@@ -1,5 +1,5 @@
 import React from 'react';
-import FormField from './FormField';
+import FormField from './AddUser';
 import { renderWithThemeProvider } from 'helpers/renderWithTeamProvider';
 
 describe('Input with value', () => {
