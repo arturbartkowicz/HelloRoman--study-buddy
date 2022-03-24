@@ -74,6 +74,9 @@ const AddUser = () => {
     } else {
       dispatch({ type: actionTypes.throwError, errorValue: 'You need to thick check box' });
     }
+
+    // handleAddUser(formValues);
+    // dispatch({ type: actionTypes.clearValues });
   };
 
   return (
