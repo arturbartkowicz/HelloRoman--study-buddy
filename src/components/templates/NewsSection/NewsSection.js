@@ -34,7 +34,7 @@ const NewsSection = () => {
         }
       )
       .then(({ data: { data } }) => setArticles(data.allArticles))
-      .catch((err) => setError("Couldn't display data"));
+      .catch((err) => setError("Sorry couldn't display data"));
   }, []);
 
   return (
