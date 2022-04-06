@@ -34,15 +34,21 @@ const NewsSection = () => {
         }
       )
       .then(({ data: { data } }) => setArticles(data.allArticles))
-      .catch((err) => setError("Sorry couldn't display data"));
+      // .then((response) => {
+      //   console.log(response);
+      // })
+      .catch((err) => {
+        setError("Sorry couldn't display data");
+        console.log('Hi');
+      });
   }, []);
 
   return (
     <Wrapper>
       <NewsSectionHeader>University news feed</NewsSectionHeader>
       {articles.length > 0 && !error ? (
-        articles.map(({ title, category, content, image = null }) => (
-          <ArticleWrapper key={title}>
+        articles.map(({ id, title, category, content, image = null }) => (
+          <ArticleWrapper key={id}>
             <TitleWrapper>
               <h3>{title}</h3>
               <p>{category}</p>
