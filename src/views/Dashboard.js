@@ -6,11 +6,11 @@ import UsersList from 'components/organisms/UsersList/UsersList';
 
 const Dashboard = () => {
   const [students, setStudentss] = useState([]);
-  const params = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get('/students')
+      .get(`/students/${id}`)
       .then(({ data }) => setStudentss(data.students))
       .catch((err) => console.log(err));
   }, []);

@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   padding: 50px;
   overflow-y: scroll;
+  height: 100vh;
 `;
 
 export const NewsSectionHeader = styled.h2`
