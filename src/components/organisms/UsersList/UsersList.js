@@ -5,7 +5,7 @@ import { StyledList } from './UsersList.styles';
 import { UserShape } from 'types';
 import { Title } from 'components/atoms/Title/Title';
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <>
       <Title>Students list</Title>
@@ -24,37 +24,3 @@ UsersList.propTypes = {
 };
 
 export default UsersList;
-
-// Komponent klasowy
-// class UsersList extends React.Component {
-//   state = {
-//     users: [],
-//     isLoading: false,
-//   };
-
-//   componentDidMount() {
-//     this.setState({ isLoading: true });
-//     mockAPI().then( (data) => {
-//       this.setState({ users: data });
-//       this.setState({ isLoading: false });
-//     });
-//   }
-
-//   deleteUsers = (name) => {
-//     const filteredName = this.state.users.filter((users) => users.name !== name);
-//     this.setState({ users: filteredName });
-//   };
-
-//   render() {
-//     return (
-//       <Wrapper>
-//         <h1>{this.state.isLoading ? 'Loading...' : 'Users List'}</h1>
-//         <StyledList>
-//           {this.state.users.map((userData, i) => (
-//             <UsersListItem deleteUser={this.deleteUsers} index={i} userData={userData} />
-//           ))}
-//         </StyledList>
-//       </Wrapper>
-//     );
-//   }
-// }
