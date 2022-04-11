@@ -22,7 +22,7 @@ const Root = () => {
               <Route path="/add-user">
                 <AddUser />
               </Route>
-              <Route path="/group/:id">
+              <Route path="/group/:id?">
                 <Dashboard />
               </Route>
             </Switch>
