@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useStudents } from 'hooks/useStudents';
 import { GroupWrapper, TitleWrapper, Wrapper } from 'views/Dashboard.styles';
 import { Title } from 'components/atoms/Title/Title';
-import UsersList from 'components/organisms/UsersList/UsersList';
+import StudentsList from 'components/organisms/StudentsList/StudentsList';
 
 const Dashboard = () => {
   const { id } = useParams();
-  const { groups, students } = useStudents(id);
+  const { groups } = useStudents();
 
   if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
         </nav>
       </TitleWrapper>
       <GroupWrapper>
-        <UsersList users={students} />
+        <StudentsList />
       </GroupWrapper>
     </Wrapper>
   );
