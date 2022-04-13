@@ -3,6 +3,9 @@ import { students } from '../data/students';
 import { groups } from '../data/groups';
 
 export const handlers = [
+  rest.get('/students', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ students: students }));
+  }),
   rest.get('/groups', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ groups: groups }));
   }),

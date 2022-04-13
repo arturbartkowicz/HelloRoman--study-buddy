@@ -10,6 +10,7 @@ export const SearchBarWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 0 40px;
+  position: relative;
 
   ${Input} {
     font-size: ${({ theme }) => theme.fontSize.xl};
@@ -27,4 +28,12 @@ export const StatusInfo = styled.div`
     margin: 5px;
     margin-right: 40px;
   }
+`;
+
+export const List = styled.ul`
+  color: ${({ theme }) => theme.colors.darkGrey};
+  font-size: ${({ theme }) => theme.fontSize.l};
+  background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
+  top: 160px;
 `;
