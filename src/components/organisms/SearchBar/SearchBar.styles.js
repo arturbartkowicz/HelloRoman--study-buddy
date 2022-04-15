@@ -35,5 +35,26 @@ export const List = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.l};
   background-color: ${({ theme }) => theme.colors.white};
   position: relative;
-  top: 160px;
+  top: 320px;
+  right: 200px;
+  z-index: 10;
+  padding: 20px;
+  margin: 0;
+  border-radius: 10px;
+  list-style-type: none;
+`;
+
+export const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 30px;
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: lightgrey;
+  }
 `;

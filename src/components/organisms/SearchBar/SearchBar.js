@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'components/atoms/Input/Input';
-import { SearchBarWrapper, StatusInfo, List } from './SearchBar.styles';
+import { SearchBarWrapper, StatusInfo, List, ListItem } from './SearchBar.styles';
 import axios from 'axios';
 
 const SearchBar = () => {
@@ -30,7 +30,7 @@ const SearchBar = () => {
       {isOpen && (
         <List>
           {students.map((student) => {
-            return <li key={student.id}>{student.name}</li>;
+            return <ListItem key={student.id}>{student.name}</ListItem>;
           })}
         </List>
       )}
