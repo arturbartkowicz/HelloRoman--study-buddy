@@ -5,17 +5,22 @@ import axios from 'axios';
 
 const SearchBar = () => {
   const [students, setStudents] = useState([]);
+  const [filterStudents, setFilterStudents] = useState(students);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(students);
+
   useEffect(() => {
     axios
       .get('/students')
-      .then(({ data }) => setStudents(data.students))
+      .then(({ data }) => {
+        setStudents(data.students);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
     setIsOpen(true);
+    const filterStudents = students.filter((user) => user.name.toLowerCase().includes(e.target.value));
+    setFilterStudents(filterStudents);
   };
 
   return (
@@ -29,7 +34,7 @@ const SearchBar = () => {
       <Input type="text" onChange={handleSearch} />
       {isOpen && (
         <List>
-          {students.map((student) => {
+          {filterStudents.map((student) => {
             return <ListItem key={student.id}>{student.name}</ListItem>;
           })}
         </List>
