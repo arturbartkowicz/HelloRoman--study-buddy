@@ -20,8 +20,18 @@ export const useStudents = ({ groupId = '' } = {}) => {
       .catch((err) => console.log(err));
   }, [groupId]);
 
+  const findStudents = async (searchPhrase) => {
+    try {
+      const { data } = await axios.post(`/students/search`, { searchPhrase });
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return {
     students,
     groups,
+    findStudents,
   };
 };

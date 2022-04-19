@@ -30,20 +30,6 @@ export const StatusInfo = styled.div`
   }
 `;
 
-export const List = styled.ul`
-  color: ${({ theme }) => theme.colors.darkGrey};
-  font-size: ${({ theme }) => theme.fontSize.l};
-  background-color: ${({ theme }) => theme.colors.white};
-  position: relative;
-  top: 320px;
-  right: 200px;
-  z-index: 10;
-  padding: 20px;
-  margin: 0;
-  border-radius: 10px;
-  list-style-type: none;
-`;
-
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
@@ -56,5 +42,39 @@ export const ListItem = styled.li`
     width: 100%;
     height: 1px;
     background-color: lightgrey;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  position: relative;
+`;
+
+export const SearchResults = styled.ul`
+  z-index: 1000;
+  max-height: 500px;
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 15px;
+  list-style: none;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.white};
+  li {
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.darkGrey};
+    background-color: ${({ theme }) => theme.colors.white};
+    width: 100%;
+    padding: 20px 5px;
+  }
+  li:hover,
+  li:focus {
+    background-color: ${({ theme }) => theme.colors.lightPurple};
+  }
+  li:not(:last-child) {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
   }
 `;
