@@ -32,7 +32,7 @@ const SearchBar = () => {
         <SearchResults {...getMenuProps()}>
           {isOpen &&
             matchingStudents.map((item, index) => (
-              <SearchResultListItem {...getItemProps({ item, index })} key={item.id}>
+              <SearchResultListItem isHighlited={highlightedIndex === index} {...getItemProps({ item, index })} key={item.id}>
                 {item.name}
               </SearchResultListItem>
             ))}

@@ -68,12 +68,11 @@ export const SearchResults = styled.ul`
 export const SearchResultListItem = styled.li`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkGrey};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, isHighlited }) => (isHighlited ? theme.colors.lightPurple : theme.colors.white)};
   width: 100%;
   padding: 20px 5px;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.lightPurple};
   }
   &:not(:last-child) {
