@@ -50,6 +50,7 @@ export const SearchWrapper = styled.div`
 `;
 
 export const SearchResults = styled.ul`
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   z-index: 1000;
   max-height: 500px;
   overflow-y: scroll;
