@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input } from 'components/atoms/Input/Input';
 import { SearchBarWrapper, SearchResults, SearchResultListItem, SearchWrapper, StatusInfo } from './SearchBar.styles';
 import { useCombobox } from 'downshift';
