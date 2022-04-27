@@ -13,7 +13,7 @@ describe('Search Bar', () => {
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
 
-  it('Rrender the component', () => {
-    render(<SearchBar />);
-  });
+  // it('Rrender the component', () => {
+  //   render(<SearchBar />);
+  // });
 });
