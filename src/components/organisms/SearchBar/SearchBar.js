@@ -28,7 +28,7 @@ const SearchBar = () => {
         </p>
       </StatusInfo>
       <SearchWrapper {...getComboboxProps()}>
-        <Input {...getInputProps()} name="search" id="search" />
+        <Input {...getInputProps()} name="search" id="search" placeholder="Search" />
         <SearchResults isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()}>
           {isOpen &&
             matchingStudents.map((item, index) => (
